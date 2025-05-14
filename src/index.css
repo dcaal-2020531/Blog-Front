@@ -1,0 +1,86 @@
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f8fc;
+  color: #1a1a1a;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #1e1e2f;
+  color: #fff;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+/* Main container */
+.main-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Course */
+.course {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.course-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.course-description {
+  margin-bottom: 0.5rem;
+}
+.course-area {
+  font-size: 0.9rem;
+  background-color: #e0f7fa;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Publication */
+.publication {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.pub-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.pub-content {
+  margin-bottom: 1rem;
+}
+
+/* Comments */
+.comments-section {
+  margin-top: 1rem;
+}
+.comment {
+  background-color: #f0f2f5;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+.comment-author {
+  font-weight: 600;
+}
+.comment-content {
+  font-size: 0.95rem;
+}
