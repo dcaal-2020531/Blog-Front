@@ -1,21 +1,3 @@
-import axios from "axios";
-
-// Configuración base de Axios
-const apiClient = axios.create({
-  baseURL: "/api", // Esto será redirigido por el proxy
-  timeout: 3000,
-});
-
-// Función para obtener token del localStorage
-const getToken = () => localStorage.getItem("token");
-
-// Headers con token
-
-
-//////////////////////////////
-// 📚 Publicaciones
-//////////////////////////////
-
 export const getAllPublications = async () => {
   try {
     return await apiClient.get("/publication");
@@ -40,9 +22,9 @@ export const createPublication = async (publication) => {
   }
 };
 
-export const updatePublication = async (id, updatedData) => {
+export const updatePublication = async (id, data) => {
   try {
-    return await apiClient.put(`/publication/${id}`, updatedData, authHeaders());
+    return await apiClient.put(`/publication/${id}`, data, authHeaders());
   } catch (err) {
     return { error: true, err };
   }
@@ -56,9 +38,7 @@ export const deletePublication = async (id) => {
   }
 };
 
-//////////////////////////////
-// 💬 Comentarios
-//////////////////////////////
+//Comentarios
 
 export const getCommentsByPublication = async (publicationId) => {
   try {
@@ -84,9 +64,7 @@ export const deleteComment = async (id) => {
   }
 };
 
-//////////////////////////////
-// 📘 Cursos
-//////////////////////////////
+
 
 export const getAllCourses = async () => {
   try {
@@ -127,3 +105,4 @@ export const deleteCourse = async (id) => {
     return { error: true, err };
   }
 };
+

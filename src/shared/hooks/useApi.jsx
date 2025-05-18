@@ -4,14 +4,15 @@ import {
   getAllPublications,
   createPublication,
   getCommentsByPublication,
-  createComment
+  createComment,
+  deleteComment as deleteCommentService 
 } from '../../services/api.jsx'
+
 
 export const useApi = () => {
   const [posts, setPosts] = useState([])
   const [isFetchingPosts, setIsFetchingPosts] = useState(true)
 
-  // Obtener todas las publicaciones con sus comentarios
   const getPosts = async () => {
     setIsFetchingPosts(true)
     const res = await getAllPublications()
@@ -23,7 +24,6 @@ export const useApi = () => {
       return
     }
 
-    // Obtener comentarios de cada publicación
     const postsWithComments = await Promise.all(
       res.data.map(async (post) => {
         const commentsRes = await getCommentsByPublication(post._id)
@@ -38,7 +38,18 @@ export const useApi = () => {
     setIsFetchingPosts(false)
   }
 
-  // Crear una nueva publicación
+  const removeComment = async (commentId) => {
+  const res = await deleteCommentService(commentId)
+  if (res.error) {
+    toast.error(
+      res?.err?.response?.data?.message || 'Error al eliminar comentario'
+    )
+    return
+  }
+  toast.success('Comentario eliminado')
+  getPosts() 
+}
+
   const addPost = async (post) => {
     const res = await createPublication(post)
     if (res.error) {
@@ -48,10 +59,9 @@ export const useApi = () => {
       return
     }
     toast.success('Publicación guardada correctamente')
-    getPosts() // Recarga las publicaciones
+    getPosts() 
   }
 
-  // Agregar comentario a una publicación
   const addComment = async (comment) => {
     const res = await createComment(comment)
     if (res.error) {
@@ -61,14 +71,16 @@ export const useApi = () => {
       return
     }
     toast.success('Comentario agregado correctamente')
-    getPosts() // Recarga las publicaciones y sus comentarios
+    getPosts() 
   }
 
   return {
-    posts,
-    isFetchingPosts,
-    getPosts,
-    addPost,
-    addComment
-  }
+  posts,
+  isFetchingPosts,
+  getPosts,
+  addPost,
+  addComment,
+  removeComment
+}
+
 }
